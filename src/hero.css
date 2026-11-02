@@ -1,0 +1,91 @@
+/* Scope: orbital hero only. Both clipped layers share an identical ellipse. */
+/* Meteors: 1.2s visible flights, staggered on a 12s clock; gold every 24s.
+   Layer 1 is above universe (0), below hero content (2); sky is paint-contained. */
+.orbital-meteors{position:absolute;inset:0 0 36% 46%;z-index:1;overflow:hidden;overflow:clip;pointer-events:none;contain:paint}
+.orbital-meteor{--meteor-color:#76dcff;--meteor-x:-260px;--meteor-y:150px;--meteor-angle:-30deg;position:absolute;left:76%;top:8%;width:160px;height:3px;opacity:0;pointer-events:none;transform:translate3d(0,0,0) rotate(var(--meteor-angle));transform-origin:0 50%;animation:orbital-meteor-flight 12s linear .6s infinite both}
+.orbital-meteor:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#f4fdff 0%,var(--meteor-color) 12%,transparent 100%);clip-path:polygon(0 0,100% 50%,0 100%);filter:drop-shadow(0 0 3px var(--meteor-color))}
+.orbital-meteor:before{content:"";position:absolute;left:-2px;top:-1px;width:5px;height:5px;border-radius:50%;background:#f1fcff;box-shadow:0 0 7px 2px var(--meteor-color),0 0 17px var(--meteor-color)}
+.orbital-meteor--white{--meteor-color:#d7ecff;--meteor-x:-210px;--meteor-y:147px;--meteor-angle:-35deg;left:52%;top:5%;width:125px;height:2px;animation-delay:6.6s}
+.orbital-meteor--gold{--meteor-color:#f5cf82;--meteor-x:-240px;--meteor-y:138px;--meteor-angle:-30deg;left:90%;top:24%;width:175px;animation-name:orbital-meteor-gold-flight;animation-duration:24s;animation-delay:3.6s}
+.orbital-meteor--gold:before{background:#fff0ce}
+@keyframes orbital-meteor-flight{0%{opacity:0;transform:translate3d(0,0,0) rotate(var(--meteor-angle))}1%{opacity:1}7%{opacity:.85}10%,100%{opacity:0;transform:translate3d(var(--meteor-x),var(--meteor-y),0) rotate(var(--meteor-angle))}}
+@keyframes orbital-meteor-gold-flight{0%{opacity:0;transform:translate3d(0,0,0) rotate(var(--meteor-angle))}.5%{opacity:.9}3.5%{opacity:.75}5%,100%{opacity:0;transform:translate3d(var(--meteor-x),var(--meteor-y),0) rotate(var(--meteor-angle))}}
+.orbital-paused .orbital-meteor{animation-play-state:paused}
+@media(min-width:761px) and (max-width:1100px){.orbital-meteors{opacity:.8}.orbital-meteor{width:135px}.orbital-meteor--gold{width:155px}}
+/* One flight on mobile, confined below copy/CTA to the visual's upper sky. */
+@media(max-width:760px){.orbital-meteors{inset:auto 0 220px 20%;height:255px}.orbital-meteor--white,.orbital-meteor--gold{display:none}.orbital-meteor--cyan{left:80%;top:10px;width:115px;height:2px;--meteor-x:-180px;--meteor-y:104px;animation-delay:.6s}}
+@media(prefers-reduced-motion:reduce){.orbital-meteors{display:none}.orbital-meteor{animation:none}}
+.hero--orbital{isolation:isolate;overflow:hidden;overflow:clip;background:radial-gradient(ellipse at 79% 42%,#123e7759,transparent 47%),radial-gradient(ellipse at 59% 100%,#106eae33,transparent 55%),linear-gradient(115deg,#040e21,#081c39 68%,#07152c)}
+.hero--orbital .hero-grid{grid-template-columns:minmax(0,40fr) minmax(0,60fr);gap:24px;min-height:704px;width:min(1560px,calc(100% - 128px));z-index:2}
+.hero--orbital .hero-copy{position:relative;z-index:3;min-width:0;padding-block:44px}
+.hero.hero--orbital h1{font-size:clamp(38px,3.8vw,66px);line-height:1.15;font-weight:720;text-shadow:0 4px 40px #0003}
+.hero--orbital h1>span{color:#68baff;text-shadow:0 0 45px #35a7ff22}
+.hero--orbital .hero-copy>p{max-width:440px}
+.hero--orbital .hero-actions{gap:10px;max-width:none}
+.hero--orbital .hero-actions .button{padding:16px;font-size:11px;gap:10px}
+.hero--orbital .hero-bottom{z-index:3}
+.orbital-stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 12% 24%,#fff9 0 1px,transparent 1.5px),radial-gradient(circle at 76% 18%,#b6dcffb0 0 1px,transparent 1.7px),radial-gradient(circle at 89% 72%,#f5c65b90 0 1px,transparent 2px);background-size:263px 221px,347px 303px,461px 397px;opacity:.65}
+
+.orbital-visual{min-width:0;position:relative;isolation:isolate;padding-block:12px}
+.orbital-stage{--phone-width:264px;--phone-height:555px;width:100%;height:620px;position:relative;isolation:isolate;perspective:1100px}
+.orbital-halo{position:absolute;inset:9% 0 8%;background:radial-gradient(ellipse,#1268d345,transparent 66%);pointer-events:none}
+.orbital-guide{position:absolute;left:1%;top:29%;width:98%;height:47%;border:1px solid #53b8ff35;border-radius:50%;transform:rotate(-14deg);pointer-events:none}
+.orbital-guide--two{left:5%;top:24%;width:90%;height:57%;border:1px dashed #d1ac5b26;transform:rotate(14deg);animation:orbital-guide-breathe 12s ease-in-out infinite}
+.orbital-phone-float{position:absolute;left:50%;top:42px;width:var(--phone-width);height:var(--phone-height);margin-left:calc(var(--phone-width) / -2);z-index:2;animation:orbital-phone-float 6s ease-in-out infinite;transform-style:preserve-3d}
+.orbital-phone{height:100%;position:relative;padding:7px;border-radius:33px;background:linear-gradient(125deg,#a8c2dc,#193959 15%,#061326 50%,#6385ac 95%);border:1px solid #9cc4eaa6;box-shadow:10px 14px 0 -7px #07101f,17px 30px 55px #0009,0 0 43px #35a7ff2b;transform:rotate(-7deg) rotateY(-8deg) rotateX(3deg);transform-style:preserve-3d}
+.orbital-phone:before{content:"";position:absolute;left:-4px;top:100px;width:3px;height:38px;border-radius:3px;background:#678eb5;box-shadow:0 50px #678eb5}
+.orbital-phone-screen{width:100%;height:100%;border-radius:25px;overflow:hidden;background:#f6f7fc;display:flex;align-items:center}
+.orbital-phone-screen img{width:100%;height:100%;display:block;object-fit:contain}
+.orbital-glass{position:absolute;inset:7px;border-radius:25px;background:linear-gradient(115deg,#ffffff0b,transparent 33%,transparent 80%,#ffffff10);pointer-events:none}
+/* Clip before rotation: upper semicircle behind phone, lower in front. */
+.orbital-ribbon{position:absolute;left:1%;top:257px;width:98%;height:258px;pointer-events:none;transform:rotate(-14deg);transform-style:preserve-3d}
+.orbital-ribbon--rear{z-index:1;clip-path:inset(0 -12px 50% -12px);opacity:.8}
+.orbital-ribbon--front{z-index:3;clip-path:inset(50% -12px -12px -12px)}
+.orbital-ring-plane{position:absolute;inset:0;transform-style:preserve-3d;filter:drop-shadow(0 0 5px #35a7ff60) drop-shadow(0 10px 12px #0008)}
+.orbital-ring-surface{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.orbital-ring-depth{fill:none;stroke:#020710;stroke-width:39}.orbital-ring-band{fill:none;stroke-width:36;stroke-opacity:1}
+.orbital-ring-edge{fill:none;stroke:var(--energy-cyan,#39d5ff);stroke-width:1.5}
+.orbital-ring-inner{fill:none;stroke:var(--solar-gold,#ffc66d);stroke-width:1}
+.orbital-ribbon--front .orbital-letter{offset-rotate:auto 180deg}
+.orbital-ribbon--rear .orbital-ring-edge{stroke:#d7b469}
+.orbital-letter-track{position:absolute;inset:0}
+.orbital-letter{position:absolute;top:0;left:0;white-space:pre;offset-path:ellipse(46% 37% at 50% 50%);offset-distance:var(--letter-position);offset-anchor:center;offset-rotate:auto;color:#edf8ff;font:700 14px/1 var(--font-ui);text-shadow:0 0 9px #35a7ff77;animation:orbital-letter-run 34s linear infinite}
+.orbital-letter--star{color:#f5c65b}
+.orbital-card{position:absolute;display:flex;align-items:center;gap:8px;width:150px;padding:13px 12px;border:1px solid #98c7ff38;border-radius:11px;background:linear-gradient(120deg,#153457ed,#0b1c35ed);box-shadow:0 12px 26px #0004,inset 0 1px #ffffff09;backdrop-filter:blur(10px);z-index:4;animation:orbital-card-float 7s ease-in-out infinite}
+.orbital-card>span{display:grid;place-items:center;flex-shrink:0;width:29px;height:31px;background:#35a7ff13;border:1px solid #35a7ff21;border-radius:8px;color:#7bc5ff}
+.orbital-card strong{display:block;font-size:13px;font-weight:650;color:#eef6ff}
+.orbital-card small{display:block;font-size:11px;color:#acc4df;margin-top:4px;line-height:1.5}
+.orbital-card--products{left:8%;top:172px;animation-delay:-1s}
+.orbital-card--sales{right:5%;top:203px;animation-delay:-3s}
+.orbital-card--reports{left:10%;top:476px;animation-delay:-5s}
+.orbital-card--credit{right:6%;top:461px;animation-delay:-2s}
+.orbital-card--credit>span,.orbital-card--reports>span{color:#f5c65b;background:#f5c65b10;border-color:#f5c65b26}
+.orbital-visual-footer{display:flex;align-items:center;justify-content:center;gap:12px;position:relative;z-index:4;flex-wrap:wrap;padding-bottom:10px}
+.orbital-visual-footer p{display:flex;align-items:center;gap:6px;color:#b6c9df;font-size:9px;margin:0;line-height:1.8}
+.orbital-visual-footer p>span{height:4px;width:4px;background:#f5c65b;border-radius:50%}
+.orbital-visual-footer button{display:flex;align-items:center;gap:6px;background:#09213a;border:1px solid #658cb170;color:#d3e6f9;border-radius:20px;padding:7px 10px;font-size:9px;cursor:pointer}
+.orbital-visual-footer button:hover{background:#14355a}
+.orbital-paused .orbital-letter,.orbital-paused .orbital-phone-float,.orbital-paused .orbital-card,.orbital-paused .orbital-guide{animation-play-state:paused}
+@keyframes orbital-letter-run{from{offset-distance:var(--letter-position)}to{offset-distance:calc(var(--letter-position) + var(--letter-travel))}}
+@keyframes orbital-phone-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes orbital-card-float{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@keyframes orbital-guide-breathe{0%,100%{opacity:.45}50%{opacity:1}}
+@media(max-width:1100px) and (min-width:761px){.hero--orbital .hero-grid{width:calc(100% - 64px);grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;min-height:630px}.hero.hero--orbital h1{font-size:clamp(30px,4vw,44px)}.orbital-stage{--phone-width:198px;--phone-height:412px;height:520px}.orbital-phone-float{top:57px}.orbital-ribbon{top:189px;height:220px}.orbital-card{width:116px;padding:9px 7px;gap:6px}.orbital-card strong{font-size:10px}.orbital-card small{font-size:8px}.orbital-card>span{width:25px;height:27px}.orbital-card--products{left:0;top:57px}.orbital-card--sales{right:0;top:75px}.orbital-card--reports{left:0;top:443px}.orbital-card--credit{right:0;top:430px}.orbital-letter{font-size:10px}}
+@media(max-width:760px){.hero--orbital .hero-grid{width:calc(100% - 40px);grid-template-columns:minmax(0,1fr);gap:0;min-height:0;padding-top:42px}.hero--orbital .hero-copy{padding:0 0 18px}.hero.hero--orbital h1{font-size:clamp(28px,7.8vw,48px)}.hero--orbital .hero-actions .button{padding:15px}.orbital-visual{width:100%;max-width:480px;margin-inline:auto;padding-top:0}.orbital-stage{--phone-width:190px;--phone-height:394px;height:470px;perspective:1000px}.orbital-phone-float{top:33px}.orbital-phone{transform:rotate(-5deg) rotateY(-3deg);box-shadow:9px 17px 30px #0007,0 0 20px #35a7ff22}.orbital-ribbon{top:191px;height:190px;transform:rotate(-10deg)}.orbital-letter{font-size:10px}.orbital-ring-band{stroke-width:40}.orbital-guide{top:37%;height:40%}.orbital-guide--two{top:31%;height:52%;animation:none}.hero--orbital .orbital-card{display:none}.orbital-visual-footer{gap:10px;padding:0 0 22px}.orbital-visual-footer p{font-size:8px}.hero--orbital .hero-bottom{margin-top:0}}
+@media(max-width:360px){.orbital-letter{font-size:9px}.orbital-stage{--phone-width:178px;--phone-height:368px;height:445px}.orbital-ribbon{top:179px;height:180px}}
+@media(prefers-reduced-motion:reduce){.hero--orbital .orbital-letter,.hero--orbital .orbital-phone-float,.hero--orbital .orbital-card,.hero--orbital .orbital-guide{animation:none!important}.orbital-visual-footer button{display:none}}
+/* Cinematic render is a separate decorative asset; actual app screen stays in HTML. */
+.orbital-universe{position:absolute;inset:0;z-index:0;pointer-events:none;background:#030b19}
+.orbital-universe img{display:block;width:100%;height:100%;object-fit:cover;object-position:center bottom}
+.orbital-universe:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 93% 54%,rgb(255 225 170/.68),rgb(255 138 61/.21) 7%,transparent 25%);z-index:1}
+.orbital-universe:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(90deg,#020a17f0 0%,#030d20c2 30%,#030d2020 63%,transparent 100%),radial-gradient(ellipse at 55% 15%,rgb(117 71 200/.24),transparent 36%),radial-gradient(ellipse at 68% 4%,rgb(192 75 186/.12),transparent 29%),linear-gradient(0deg,#06162f33,transparent 25%)}
+.hero--orbital:before{opacity:.15}
+.hero--orbital .hero-copy>p{color:#c4d3e8}
+.hero--orbital .hero-bottom{width:min(1560px,calc(100% - 128px));border-top-color:#ffffff24}
+.orbital-ribbon--front .orbital-ring-plane{filter:drop-shadow(0 1px 1px #92d8ff88) drop-shadow(0 0 7px #35a7ff66) drop-shadow(0 12px 14px #000c)}
+.orbital-ribbon--rear{opacity:.88}
+.orbital-ring-depth{filter:drop-shadow(0 3px 1px #01050c)}
+.orbital-card{background:linear-gradient(125deg,#213a55dd,#071629eb);border-color:#91badc50;box-shadow:0 16px 35px #0008,inset 0 1px #d9edff20}
+@media(min-width:1500px){.hero--orbital .hero-grid{min-height:704px}.hero--orbital .hero-copy{padding-bottom:65px}.orbital-stage{height:620px;--phone-width:276px;--phone-height:581px}.orbital-phone-float{top:18px}.orbital-ribbon{top:261px;height:260px}}
+@media(max-width:1100px) and (min-width:761px){.hero--orbital .hero-bottom{width:calc(100% - 64px)}.orbital-universe img{object-position:65% bottom}.hero--orbital .hero-actions{max-width:330px}.orbital-card{width:116px;padding:9px 7px}.orbital-card small{font-size:8px}.orbital-ribbon{top:189px;height:220px}}
+@media(max-width:760px){.hero--orbital .hero-bottom{width:calc(100% - 40px)}.orbital-universe img{object-position:70% bottom}.orbital-universe:after{background:linear-gradient(180deg,#020a17ed 0%,#030d20c2 30%,#030d2033 66%,transparent 100%),radial-gradient(ellipse at 30% 52%,rgb(117 71 200/.17),transparent 40%)}.orbital-stars{opacity:.3}.orbital-ribbon{top:191px;height:190px}.orbital-letter{font-size:10px}.orbital-ring-depth{stroke-width:43}.orbital-phone-float{top:33px}.orbital-visual-footer p{color:#d1ddec}}

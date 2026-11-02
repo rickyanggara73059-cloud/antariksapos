@@ -1,0 +1,60 @@
+import { useState } from 'react';
+import Hero from './Hero';
+import RocketTransitions from './RocketTransitions';
+import GuideCenter from './GuideCenter';
+import FeaturePhoto from './FeaturePhoto';
+import { businessCategories } from './businessCategories';
+import FloatingWhatsApp from './FloatingWhatsApp';
+import { CommunicationBeacon, GalleryMotion, GalleryOrbits, MissionPath, MissionPlanet } from './SectionVisuals';
+import { ArrowUpRight, ArrowRight, Menu, X, MessageCircle, Plus, Image, Check } from 'lucide-react';
+import type { ReactNode } from 'react';
+import { siteConfig, whatsappHref } from './config';
+
+const navigation = [['Fitur', '#fitur'], ['Galeri', '#galeri'], ['Cara Memulai', '#mulai'], ['Pusat Panduan', '#panduan'], ['FAQ', '#faq']];
+const features = [
+  { title: 'Kasir POS', text: 'Kenali alur pencatatan penjualan untuk aktivitas kasir usaha Anda.', group: 'PENJUALAN' },
+  { title: 'Produk', text: 'Daftar produk menampilkan pencarian nama atau SKU, kategori, serta tombol Tambah.', group: 'PENGELOLAAN' },
+  { title: 'Laporan', text: 'Layar POS menampilkan ringkasan pendapatan, transaksi, dan aset, dengan pilihan periode.', group: 'INFORMASI' },
+  { title: 'Mutasi', text: 'Pelajari pencatatan mutasi dan cakupan penggunaannya bersama tim.', group: 'PENCATATAN' },
+  { title: 'QRIS Dinamis', text: 'Layar input nominal menyediakan tombol angka dan pilihan nominal. Ketentuan layanan perlu dikonfirmasi.', group: 'QRIS' },
+  { title: 'QRIS Statis', text: 'Konsultasikan penggunaan QRIS statis sesuai kebutuhan usaha Anda.', group: 'QRIS' },
+  { title: 'Kasbon', text: 'Layar Kasbon/Piutang menampilkan pemilih periode, total kasbon, dan jumlah transaksi.', group: 'PENCATATAN' },
+  { title: 'Transaksi Pending', text: 'Pelajari penanganan transaksi yang masih tertunda di aplikasi.', group: 'PENJUALAN' },
+  { title: 'Profil', text: 'Kenali bagian profil dan informasi yang dapat dikelola.', group: 'PENGELOLAAN' },
+] as const;
+const faqs = [
+  ['Apa itu ANTARIKSA POS?', 'ANTARIKSA POS adalah aplikasi Android untuk membantu mengelola penjualan, produk, dan aktivitas usaha. Halaman ini memperkenalkan fitur yang dapat Anda konsultasikan lebih lanjut dengan tim.'],
+  ['Perangkat apa yang digunakan?', 'ANTARIKSA POS digunakan melalui perangkat Android. Hubungi tim untuk mengonfirmasi versi Android, spesifikasi perangkat, dan kebutuhan operasional Anda.'],
+  ['Bagaimana cara mengetahui fitur yang tersedia?', 'Lihat ringkasan fitur di halaman ini, lalu konsultasikan detail dan ketersediaannya dengan tim. Cakupan fitur serta ketentuan penggunaannya perlu dikonfirmasi sebelum digunakan.'],
+  ['Bagaimana cara menghubungi tim ANTARIKSA POS?', `Anda dapat menghubungi tim melalui WhatsApp di ${siteConfig.contact}. Gunakan tombol konsultasi yang tersedia pada halaman ini.`],
+  ['Di mana mendapatkan aplikasi Android?', 'Tautan unduhan resmi akan tersedia setelah dikonfirmasi oleh pemilik. Untuk saat ini, hubungi tim melalui WhatsApp untuk memperoleh informasi akses aplikasi yang tersedia.'],
+];
+
+function WhatsAppLink({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className={className}>{children}<ArrowUpRight size={17} aria-hidden="true" /><span className="sr-only"> (buka WhatsApp di tab baru)</span></a>;
+}
+function Brand() {
+  return <a className="brand" href="#beranda" aria-label="ANTARIKSA POS, beranda"><img src={siteConfig.logoUrl} alt="Logo resmi ANTARIKSA POS" width={60} height={60} /><span aria-hidden="true">ANTARIKSA<span className="brand-pos">POS<span className="brand-dot">.</span></span></span></a>;
+}
+export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  return <>
+    <a className="skip-link" href="#konten">Lewati ke konten</a>
+    <header><div className="container nav"><Brand /><nav aria-label="Navigasi utama" className="desktop-nav">{navigation.map(([name, href]) => <a key={href} href={href}>{name}</a>)}</nav><WhatsAppLink className="nav-contact">Hubungi Kami</WhatsAppLink><button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="mobile-menu" aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}>{menuOpen ? <X /> : <Menu />}</button></div>
+      {menuOpen && <nav id="mobile-menu" aria-label="Navigasi mobile" className="mobile-nav">{navigation.map(([name, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{name}<ArrowUpRight size={16} /></a>)}<WhatsAppLink>Konsultasi via WhatsApp</WhatsAppLink></nav>}
+    </header>
+    <main id="konten">
+      <RocketTransitions />
+      <Hero />
+      <section id="fitur" className="section features"><div className="container"><div className="section-heading"><div><div className="eyebrow">01 / KENALI FITURNYA</div><h2>Satu aplikasi.<br /><span>Beragam kebutuhan usaha.</span></h2></div><p>Mulai dari aktivitas kasir hingga pencatatan usaha. Jelajahi fitur ANTARIKSA POS dan konsultasikan kebutuhan Anda.</p></div><div className="feature-grid feature-grid--photographic">{features.map(({title, text, group}, index) => <article className="feature-card" key={title}><FeaturePhoto title={title} /><div className="feature-top"><span className="feature-number">0{index + 1}</span></div><small>{group}</small><h3>{title}</h3><p>{text}</p></article>)}</div><p className="feature-disclaimer"><span><Check size={15} /></span>Detail fitur, ketersediaan, dan ketentuan penggunaan dapat dikonfirmasi melalui tim ANTARIKSA POS.</p></div></section>
+      <section id="galeri" className="gallery section"><div className="container gallery-layout"><div><div className="eyebrow">02 / LEBIH DEKAT DENGAN APLIKASI</div><h2>Kenali tampilannya.<br /><span>Temukan alurnya.</span></h2><p>Tampilan asli aplikasi, dipilih dan dipotong untuk menjaga privasi. Gambar menunjukkan layar pada saat pengambilan, bukan jaminan hasil transaksi.</p><WhatsAppLink className="text-link">Tanyakan tampilan aplikasi</WhatsAppLink></div><div>{siteConfig.screenshots.length ? <GalleryMotion><div className="screenshot-grid">{siteConfig.screenshots.map(item => <figure key={item.src}><div className="gallery-device-stage"><GalleryOrbits /><a className="gallery-device-link" href={item.src} target="_blank" rel="noopener noreferrer" aria-label={`Lihat gambar ${item.title} di tab baru`}><div className="gallery-device-float"><div className="screenshot-frame"><img src={item.src} alt={item.alt} loading="lazy" width={634} height={item.title === 'Menu POS' ? 312 : 1277} /></div></div></a></div><figcaption><h3>{item.title}</h3><p>{item.caption}</p><a href={item.src} target="_blank" rel="noopener noreferrer">Lihat ukuran penuh <span className="sr-only">(tab baru)</span><ArrowUpRight size={14} /></a></figcaption></figure>)}</div></GalleryMotion> : <div className="gallery-placeholder"><span className="gallery-icon"><Image size={33} strokeWidth={1.3} /></span><span className="status-pill">GALERI APLIKASI</span><h3>Tampilan resmi segera hadir di sini.</h3><p>Screenshot asli belum tersedia. Hubungi tim untuk informasi tampilan dan akses aplikasi.</p><div className="placeholder-lines"><span /><span /><span /></div></div>}</div></div></section>
+      <section id="mulai" className="section"><div className="container"><div className="center-heading"><div className="eyebrow">03 / LANGKAH AWAL ANDA</div><h2>Mulai dari mengenal.<br /><span>Lanjutkan dengan langkah yang tepat.</span></h2></div><div className="steps"><MissionPath />{[['Kenali fiturnya','Kenali fitur ANTARIKSA POS dan pelajari gambaran penggunaannya.'],['Ceritakan kebutuhan Anda','Konsultasikan kebutuhan usaha bersama tim melalui WhatsApp.'],['Ikuti petunjuknya','Ikuti petunjuk penggunaan dan akses aplikasi yang tersedia.']].map(([title,text],i) => <article key={title}><div className="step-line"><MissionPlanet step={i + 1} /></div><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+      <GuideCenter />
+      <section className="audience"><div className="container audience-layout"><div><div className="eyebrow light">DARI IDE USAHA, KE AKTIVITAS SEHARI-HARI</div><h2>Untuk usaha<br />yang terus bergerak<span>.</span></h2><p>Setiap usaha punya cara kerja sendiri. Konsultasikan kebutuhan Anda untuk menilai kesesuaian aplikasi.</p></div><div className="audience-grid">{businessCategories.map(category => <div className="business-category-photo" key={category.title}><img src={category.src} alt={category.alt} width={category.width} height={category.height} style={{ objectPosition: category.position }} loading="lazy" decoding="async" /><span>{category.title}</span><ArrowUpRight size={16} aria-hidden="true" /></div>)}<small>Contoh kategori pengguna, bukan jaminan kesesuaian untuk seluruh operasional usaha.</small></div></div></section>
+      <section className="section faq" id="faq"><div className="container faq-layout"><div><div className="eyebrow">04 / ADA YANG INGIN DITANYAKAN?</div><h2>Mari cari<br /><span>tahu lebih lanjut.</span></h2><p>Informasi awal untuk membantu Anda mengenal ANTARIKSA POS.</p><WhatsAppLink className="text-link">Tanyakan langsung ke tim</WhatsAppLink><CommunicationBeacon /></div><div className="faq-list">{faqs.map(([question,answer], index) => <details key={question}><summary><span className="faq-index" aria-hidden="true">0{index + 1}</span><span className="faq-question">{question}</span><Plus size={20} /></summary><p>{answer}</p>{question.startsWith('Di mana') && <WhatsAppLink className="text-link">Informasi akses Android</WhatsAppLink>}</details>)}</div></div></section>
+      <section className="closing"><div className="container closing-inner"><div className="eyebrow light">LANGKAH BERIKUTNYA DIMULAI DARI PERCAKAPAN</div><h2>Siap Mengenal<br />ANTARIKSA POS?</h2><p>Ceritakan kebutuhan usaha Anda. Mari kenali aplikasinya bersama.</p><WhatsAppLink className="button button-gold"><MessageCircle size={19} />Konsultasi via WhatsApp</WhatsAppLink><div className="closing-orbit" /></div></section>
+    </main>
+    <footer><div className="container footer-main"><div><Brand /><p>Aplikasi Android untuk membantu<br />aktivitas usaha Anda.</p></div><nav aria-label="Navigasi footer"><span>JELAJAHI</span>{navigation.map(([name, href]) => <a key={href} href={href}>{name}</a>)}</nav><div className="footer-contact"><span>TERHUBUNG DENGAN KAMI</span><WhatsAppLink>WhatsApp <ArrowRight size={14} /></WhatsAppLink><a href={whatsappHref} target="_blank" rel="noopener noreferrer">{siteConfig.contact}<span className="sr-only"> (WhatsApp, tab baru)</span></a><small>Informasi unduhan Android<br />menunggu konfirmasi tautan resmi.</small></div></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} {siteConfig.name}.</span><span>Kenali usaha Anda. Temukan langkah berikutnya.</span><a href="#beranda">Kembali ke atas ↑</a></div></footer>
+    <FloatingWhatsApp />
+  </>;
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Sitemap akan ditambahkan setelah domain resmi dikonfirmasi.

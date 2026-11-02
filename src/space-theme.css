@@ -1,0 +1,98 @@
+/* ANTARIKSA POS — Navigate Your Business Universe.
+   Visual layer over existing components; copy, links and app assets stay intact. */
+:root{
+  --space:#050816;--midnight:#0A1530;--cosmic-blue:#123B72;
+  --solar-gold:#FFC66D;--sunlight-amber:#FF8A3D;
+  --nebula-violet:#7547C8;--galactic-magenta:#C04BBA;
+  --energy-cyan:#39D5FF;--starlight:#F4F7FF;--muted:#B9C6DC;
+  --cyan-rgb:57 213 255;--solar-rgb:255 198 109;--amber-rgb:255 138 61;
+  --violet-rgb:117 71 200;--magenta-rgb:192 75 186;
+  --solar-glow:rgb(var(--solar-rgb)/.24);--nebula-glow:rgb(var(--violet-rgb)/.2);
+  --border-light:rgb(var(--cyan-rgb)/.36);--border-nebula:rgb(var(--violet-rgb)/.4);
+  --surface-glass:rgb(10 21 48/.84);--surface-deep:rgb(5 8 22/.95);
+  --shadow-depth:0 18px 40px #0006;--shadow-inset:inset 0 1px #f4f7ff12;
+  --light-strength:1;--nebula:var(--cosmic-blue);--cyan:var(--energy-cyan);
+  --gold:var(--solar-gold);--ink:var(--starlight);--navy:var(--space);--blue:var(--energy-cyan);
+  color-scheme:dark;background:var(--space);color:var(--ink)
+}
+body{background:var(--space);color:var(--ink)}
+::selection{background:#ffc66d;color:#050816}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--cyan);outline-offset:5px}
+.skip-link{background:#102b55;color:#fff;border:1px solid var(--cyan)}
+header{background:#050816ed;border-bottom:1px solid #96c5f124;box-shadow:0 10px 35px #0002}
+@supports(backdrop-filter:blur(14px)){header{background:#050816c9;backdrop-filter:blur(14px)}}
+.desktop-nav{color:#c1cfe3}.desktop-nav a{position:relative;padding-block:10px}.desktop-nav a:after{content:"";position:absolute;left:0;bottom:2px;width:0;height:1px;background:var(--cyan);transition:width .2s}.desktop-nav a:hover:after{width:100%}
+.nav-contact{background:linear-gradient(120deg,#15334a8c,#12203b70);border-color:#8fabc54d;color:#edf5ff}.nav-contact:hover{background:#193d59;border-color:#39d5ff80}
+.mobile-nav{background:#080f23;border-color:#82b2d83b;box-shadow:0 20px 30px #0006}.mobile-nav a{border-bottom:1px solid #ffffff0b;color:#dce8f7}.menu-toggle{border-radius:6px}.menu-toggle:hover{background:#ffffff0d}
+.brand-dot{color:var(--gold)}.brand-pos{color:#adc7e4}
+.button-gold{background:linear-gradient(115deg,#ffe1a6,var(--solar-gold));color:#101b2c;box-shadow:0 6px 24px #ffc66d14,inset 0 1px #fff6}.button-gold:hover{background:#ffe4b4;box-shadow:0 8px 30px #ffc66d28}
+.button-outline{background:#07152b60;border-color:#a7c1e452}.button-outline:hover{background:#1534569c;border-color:#80c7ef}
+/* Existing hero keeps its geometry, real dashboard and timed meteor elements. */
+.hero--orbital .hero-copy>p{color:#c4d3e8}.hero--orbital .eyebrow.light{color:#b9cee9}
+.hero--orbital .hero-bottom{background:linear-gradient(90deg,transparent,#05081635,transparent)}
+.section,.audience,.closing,footer{position:relative;isolation:isolate}
+.section>.container,.audience>.container,.closing>.container,footer>.container{position:relative;z-index:1}
+.section{padding-block:110px;background:var(--space)}
+.section:before,.audience:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(circle at 15% 35%,#a7cfff60 0 .7px,transparent 1px),radial-gradient(circle at 72% 12%,#dbeaff50 0 .6px,transparent 1px);background-size:233px 211px,317px 281px;opacity:.25;mask-image:linear-gradient(transparent,#000 25%,#000 65%,transparent)}
+.section:after{content:"";position:absolute;top:0;left:10%;width:80%;height:1px;pointer-events:none;background:linear-gradient(90deg,transparent,#6c9ac633,transparent)}
+.eyebrow{color:#7cdcff;letter-spacing:.06em}.eyebrow.light{color:#aacbea}
+h2{color:var(--starlight);line-height:1.25}h2>span{color:#99b7d9}
+.section-heading>p,.gallery-layout>div>p,.faq-layout>div>p{color:var(--muted);font-size:14px}
+.text-link{color:#82dfff;border-color:#39d5ff40}.text-link:hover{color:#d4f4ff;border-color:#39d5ff}
+.features{background:radial-gradient(ellipse at 8% 36%,#12326966,transparent 48%),linear-gradient(180deg,#050816,#080e21)}
+.section-heading{margin-bottom:48px}
+.feature-grid{gap:1px;border:1px solid #9ecdf126;border-radius:18px;overflow:hidden;background:#7dadd92b;box-shadow:0 24px 80px #0004}
+.feature-card{border:0;border-radius:0;background:linear-gradient(135deg,#101c32f5,#080f20fc);padding:30px;position:relative;transition:background .2s,box-shadow .2s}
+.feature-card:nth-child(-n+3){background:radial-gradient(ellipse at 0 0,#1e426b5c,transparent 80%),#0d182c;padding-block:35px}
+.feature-card:nth-child(3n+2) .feature-icon{color:#f0ca82;background:#ffc66d0d;border-color:#ffc66d26}
+.feature-card:hover{transform:none;border-color:transparent;box-shadow:inset 0 2px #39d5ff70;background:#12233b}
+.feature-card:before{content:"";position:absolute;top:0;right:0;width:30px;height:30px;background:linear-gradient(225deg,#39d5ff12,transparent 60%);pointer-events:none}
+.feature-top{margin-bottom:27px}.feature-icon{color:#81dcff;background:#39d5ff0a;border:1px solid #39d5ff28;border-radius:10px;box-shadow:inset 0 1px #c4eaff0b}
+.feature-number{color:#89a5c7;font-family:var(--font-ui);letter-spacing:1px;border-bottom:1px solid #78a7cb3b;padding-bottom:5px}
+.feature-card>small{color:#8da8c8}.feature-card h3{color:#f1f6ff;font-size:19px}.feature-card p{color:var(--muted);font-size:13px;max-width:310px}
+.feature-disclaimer{color:#a5b7d0;font-size:11px}.feature-disclaimer>span{color:#71d6fa}
+/* Gallery: a quieter hangar around bright, untouched application screens. */
+.gallery{background:radial-gradient(ellipse at 90% 30%,#12345870,transparent 60%),linear-gradient(180deg,#080e21,#070c1a);border-block:0}
+.gallery-layout:has(.screenshot-grid){gap:42px}
+.screenshot-grid{gap:28px;align-items:start}
+.screenshot-frame{background:radial-gradient(ellipse at 50% 80%,#18436855,transparent 68%),linear-gradient(140deg,#14283d,#060d19 60%);border:1px solid #789bb95e;border-radius:24px;padding:17px;box-shadow:inset 0 1px #d6ecff40,inset 0 -2px #0009,0 18px 45px #0007;position:relative;transition:border-color .2s,box-shadow .2s}
+.screenshot-frame:before{content:"";position:absolute;inset:6px;border:1px solid #9bc8ed14;border-radius:18px;pointer-events:none}
+.screenshot-frame:hover{border-color:#83d8ff;box-shadow:inset 0 1px #d6ecff40,0 18px 45px #0007,0 0 26px #39d5ff13}
+.screenshot-grid .screenshot-frame img{object-fit:contain;border-radius:9px;filter:none}
+.screenshot-grid figure:nth-child(2){padding-top:26px}.screenshot-grid figure:nth-child(3){padding-top:52px}
+.screenshot-grid figcaption{padding-inline:5px}.screenshot-grid figcaption h3{color:#eef5ff;font-size:16px}.screenshot-grid figcaption p{color:#a7bbd6;font-size:12px}.screenshot-grid figcaption>a{color:#7bd9ff}
+.gallery-placeholder{background:linear-gradient(130deg,#10243c,#080f20);border-color:#507ba8}.gallery-placeholder p{color:#b1c4de}.gallery-icon{color:#89dfff;background:#39d5ff0c;border-color:#39d5ff29}.status-pill{color:#b2c6e0;border-color:#6f96ba4a}
+/* Starting path uses connected guide lines instead of another card grid. */
+#mulai{background:radial-gradient(ellipse at 50% 85%,#1233555c,transparent 65%),#050816}
+.center-heading h2{font-size:35px}.steps{gap:44px;margin-top:65px}.step-line span{background:#10203b;border-color:#6aa9d35e;color:#a2e5ff;box-shadow:0 0 0 6px #39d5ff04,inset 0 1px #fff1;font-family:var(--font-ui)}
+.step-line:after{background:linear-gradient(90deg,#39d5ff55,#ffc66d2e)}.step-line svg{color:#8cb9d4}.steps h3{color:#eaf2ff;font-size:18px}.steps p{color:var(--muted);font-size:13px}
+.audience{padding-block:95px;background:radial-gradient(ellipse at 0 60%,#23356d59,transparent 58%),linear-gradient(120deg,#0a142a,#081528);border-block:1px solid #759bc826}
+.audience:after{content:"";position:absolute;right:6%;top:9%;width:30%;height:82%;border:1px solid #5bcaff13;border-radius:50%;transform:rotate(25deg);pointer-events:none}
+.audience .eyebrow{color:#9bbfdf}.audience p{color:#b2c4dd;font-size:13px}.audience h2 span{color:var(--gold)}
+.audience-grid{gap:14px}.audience-grid>div{background:linear-gradient(140deg,#1e34505c,#07132477);border-color:#8bb6da2b;border-radius:12px;box-shadow:inset 0 1px #ffffff08}.audience-grid>div:nth-child(2),.audience-grid>div:nth-child(4){translate:0 16px}
+.audience-grid>div>svg:first-child{color:#85dfff}.audience-grid>div:nth-child(2n)>svg:first-child{color:#ffc66d}.audience-grid>div>svg:last-child{color:#87a8c8}.audience-grid>div>span{color:#e0edff;font-size:14px}.audience-grid>small{color:#a8bdd7;margin-top:22px;font-size:10px}
+.faq{background:radial-gradient(ellipse at 95% 30%,#11274d66,transparent 53%),#050816}
+.faq-list{border-top-color:#7eabd033}.faq-list details{border-bottom-color:#7eabd033;padding:25px 0}.faq-list summary{color:#e0eafb;font-size:14px}.faq-list summary svg{color:#78d9ff}.faq-list details>p{color:#afc1da;font-size:13px;line-height:1.95}.faq-list details[open]{background:linear-gradient(90deg,transparent,#15335433);border-bottom-color:#39d5ff66}
+/* Existing Earth asset is reused; no extra image request or generated UI. */
+.closing{padding:15px 40px 80px;background:#050816}
+.closing-inner{background:#08172a;border-radius:24px;border:1px solid #93c7e735;box-shadow:0 25px 75px #0006;padding:75px 30px;isolation:isolate}
+.closing-inner:before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,#030b1ad9,#071528a8 55%,#06132865),url('/images/hero/earth-galaxy-cinematic.jpg') center 70%/cover no-repeat;pointer-events:none}
+.closing-inner:after{content:"";position:absolute;left:10%;right:10%;height:130px;bottom:-75px;background:#39d5ff2b;filter:blur(45px);border-radius:50%;z-index:-1;pointer-events:none}
+.closing .eyebrow{color:#bfdbef}.closing h2{color:#f4f7ff;font-size:46px;letter-spacing:-.035em}.closing p{color:#d1def0;font-size:13px}.closing .button{padding:17px 24px}.closing-orbit{border-color:#83d9ff20;box-shadow:0 0 0 65px #67bbf404,0 0 0 130px #67bbf403}
+footer{background:linear-gradient(#050816,#03050e);border-top:1px solid #75a1c31f;padding-top:50px;color:#bdcde2}
+.footer-main .brand{color:#f0f5ff}.footer-main .brand-pos{color:#9bb8d8}.footer-main .brand img{background:transparent;padding:0}.footer-main p{color:#9fb3ce;font-size:12px}.footer-main nav>span,.footer-contact>span{color:#92acca}.footer-contact small{color:#9ab0cb}.footer-contact>a:first-of-type{color:#d6ecff}.footer-bottom{border-top-color:#799fc32b;color:#8fa7c5}.footer-bottom>a{color:#b1d2eb}footer a:hover{color:#8ae3ff}
+@media(max-width:1100px){.section{padding-block:88px}.feature-card{padding:24px}.screenshot-grid{gap:18px}.audience-layout,.faq-layout{gap:48px}}
+@media(max-width:760px){header{background:#050816ef}.section{padding-block:70px}.section-heading{margin-bottom:32px}.section-heading>p,.gallery-layout>div>p,.faq-layout>div>p{font-size:13px}.feature-card{padding:22px 17px}.feature-card:nth-child(-n+3){padding-block:22px}.feature-card h3{font-size:17px}.feature-card p{font-size:12px}.feature-top{margin-bottom:22px}.feature-card>small{font-size:8px;letter-spacing:.5px}.feature-disclaimer{font-size:10px}.feature-grid{border-radius:14px}.center-heading h2{font-size:28px}.steps{gap:32px;margin-top:38px}.steps h3{font-size:17px}.steps p{font-size:12px}.screenshot-grid{gap:34px}.screenshot-grid figure:nth-child(n){padding-top:0}.screenshot-frame{padding:16px;border-radius:21px}.screenshot-grid .screenshot-frame img{max-height:560px}.audience{padding-block:70px}.audience-grid>div{padding:20px 16px}.audience-grid>div:nth-child(2n){translate:none}.audience-grid>small{margin-top:10px}.faq-list summary{font-size:13px}.faq-list details>p{font-size:12px}.closing{padding:10px 0 55px}.closing-inner{padding:54px 23px;border-radius:18px}.closing h2{font-size:35px}.closing p{font-size:12px;line-height:1.8}.closing-inner:before{background-position:64% bottom}.closing .eyebrow{font-size:8px;line-height:1.9}.footer-main{gap:30px}.footer-bottom{font-size:9px;line-height:1.7}.footer-main nav>span,.footer-contact>span{font-size:8px;letter-spacing:.8px}}
+@media(max-width:360px){.feature-grid{grid-template-columns:minmax(0,1fr)}.feature-card:last-child{grid-column:auto}.audience-grid{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){.desktop-nav a:after,.feature-card,.screenshot-frame{transition:none}}
+/* Single persistent contact shortcut; consumes the existing encoded WhatsApp URL. */
+.floating-whatsapp{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:40;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,#168c52,#08723e);border:1px solid #64dfc18c;box-shadow:0 8px 26px #0008,0 0 16px #39d5ff20,inset 0 1px #ffffff35;text-decoration:none;transition:background .2s,box-shadow .2s}
+.floating-whatsapp>svg{display:block;flex-shrink:0}
+.floating-whatsapp:hover{background:#0b8248;box-shadow:0 8px 26px #0008,0 0 22px #39d5ff35}
+.floating-whatsapp:focus-visible{outline:3px solid var(--energy-cyan);outline-offset:5px;box-shadow:0 0 0 8px #050816,0 8px 26px #0008}
+.floating-whatsapp-label{position:absolute;right:calc(100% + 14px);white-space:nowrap;padding:11px 15px;border:1px solid var(--border-light);border-radius:10px;background:#0a1530f5;color:var(--starlight);font-size:12px;font-weight:600;box-shadow:0 8px 25px #0006;opacity:0;visibility:hidden;translate:5px 0;transition:opacity .18s,translate .18s,visibility .18s;pointer-events:none}
+.floating-whatsapp:is(:hover,:focus-visible) .floating-whatsapp-label{opacity:1;visibility:visible;translate:0 0}
+/* The final footer links can scroll clear of the fixed button. */
+footer{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+@media(max-width:760px){.floating-whatsapp{width:56px;height:56px;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}.floating-whatsapp-label{display:none}}
+@media(prefers-reduced-motion:reduce){.floating-whatsapp,.floating-whatsapp-label{transition:none}}
